@@ -39,3 +39,16 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# Like and comment
+posts = Micropost.all
+posts.each do |post|
+  like_count = Random.rand(0..20)
+  (0..like_count).each { |i| post.likes.create!(user_id: i + 2) }
+
+  comment_count = Random.rand(0..10)
+  (0..comment_count).each do
+    content = Faker::Quote.famous_last_words
+    post.comments.create!(user_id: Random.rand(1..50), content: content)
+  end
+end

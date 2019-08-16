@@ -51,6 +51,19 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
+  def like(post)
+    post.likes.create!(user_id: id)
+  end
+
+  def unlike(post)
+    like = post.likes.find_by(user_id: id)
+    like.destroy
+  end
+
+  def liked?(post)
+    post.likes.exists?(user_id: id)
+  end
+
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")

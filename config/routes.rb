@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'likes/create'
+  get 'likes/destroy'
+  get 'like/create'
+  get 'like/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'sessions/new'
@@ -22,8 +27,10 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
-  resources :microposts,          only: [:create, :destroy]
+  resources :microposts,          only: [:create, :show, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :likes, only: %i[create destroy]
+  resources :comments, only: [:create]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

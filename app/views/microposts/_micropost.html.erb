@@ -1,3 +1,5 @@
+<% like_count = micropost.likes.count %>
+<% comment_count = micropost.comments.count %>
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
@@ -9,5 +11,9 @@
       <%= link_to "delete", micropost, method: :delete,
                   data: { confirm: "You sure?" } %>
     <% end %>
+  </span>
+
+  <span class="post-stats">
+    Post has <%= like_count %> <%= 'like'.pluralize(like_count) %> and <%= comment_count %> <%= 'comment'.pluralize(comment_count) %>.
   </span>
 </li>
