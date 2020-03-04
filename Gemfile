@@ -13,7 +13,7 @@ gem 'mini_magick'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
